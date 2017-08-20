@@ -175,6 +175,7 @@ function start_contrail() {
     run_process schema "contrail-schema --conf_file /etc/contrail/contrail-schema.conf"
     run_process control "sudo contrail-control --conf_file /etc/contrail/contrail-control.conf"
     run_process collector "contrail-collector --conf_file /etc/contrail/contrail-collector.conf"
+    run_process alarm-gen "contrail-alarm-gen --conf_file /etc/contrail/contrail-alarm-gen.conf"
     run_process analytic-api "contrail-analytics-api --conf_file /etc/contrail/contrail-analytics-api.conf"
     run_process query-engine "contrail-query-engine --conf_file /etc/contrail/contrail-query-engine.conf"
     run_process dns "contrail-dns --conf_file /etc/contrail/dns/contrail-dns.conf"
