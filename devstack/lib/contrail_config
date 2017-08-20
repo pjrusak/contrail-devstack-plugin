@@ -312,19 +312,19 @@ function contrail_config_analytics_api()
 
     [[ -n $CLUSTER_ID ]] && iniset -sudo $config_file DATABASE cluster_id $CLUSTER_ID
 
-    iniset -sudo $config_file DEFAULT host_ip $COLLECTOR_IP
-    iniset -sudo $config_file DEFAULT hostname $CONTRAIL_HOSTNAME
+    iniset -sudo $config_file DEFAULTS host_ip $COLLECTOR_IP
+    iniset -sudo $config_file DEFAULTS hostname $CONTRAIL_HOSTNAME
 
     #REVISIT: analytics api currently fails with default value (15)
-    iniset -sudo $config_file DEFAULT partitions 0
+    iniset -sudo $config_file DEFAULTS partitions 0
 
     if _vercmp $CONTRAIL_BRANCH "<" R3.0; then
-        iniset -sudo $config_file DEFAULT cassandra_server_list "$CASSANDRA_IP_PORT_LIST"
+        iniset -sudo $config_file DEFAULTS cassandra_server_list "$CASSANDRA_IP_PORT_LIST"
     else
-        iniset -sudo $config_file DEFAULT cassandra_server_list "$CASSANDRA_CQL_IP_PORT_LIST"
+        iniset -sudo $config_file DEFAULTS cassandra_server_list "$CASSANDRA_CQL_IP_PORT_LIST"
 
         if [[ "$MULTI_TENANCY" == "False" ]]; then
-            iniset -sudo $config_file DEFAULT aaa_mode no-auth
+            iniset -sudo $config_file DEFAULTS aaa_mode no-auth
         fi
     fi
 
@@ -332,12 +332,13 @@ function contrail_config_analytics_api()
         iniset -sudo $config_file DISCOVERY disc_server_ip $DISCOVERY_IP
         iniset -sudo $config_file DISCOVERY disc_server_port 5998
     else
+        iniset -sudo $config_file DEFAULTS collectors "$COLLECTOR_IP_PORT_LIST"
         iniset -sudo $config_file API_SERVER api_server_list $CONFIG_API_IP_PORT_LIST
         iniset -sudo $config_file REDIS redis_uve_list "$REDIS_IP_PORT_LIST"
     fi
 
-    iniset -sudo $config_file DEFAULT log_level 'SYS_DEBUG'
-    iniset -sudo $config_file DEFAULT log_local 1
+    iniset -sudo $config_file DEFAULTS log_level 'SYS_DEBUG'
+    iniset -sudo $config_file DEFAULTS log_local 1
 }
 
 function contrail_config_alarm_gen()

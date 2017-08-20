@@ -178,7 +178,7 @@ function start_contrail() {
     run_process alarm-gen "contrail-alarm-gen --conf_file /etc/contrail/contrail-alarm-gen.conf"
     run_process analytic-api "contrail-analytics-api --conf_file /etc/contrail/contrail-analytics-api.conf"
     run_process query-engine "contrail-query-engine --conf_file /etc/contrail/contrail-query-engine.conf"
-    run_process dns "contrail-dns --conf_file /etc/contrail/dns/contrail-dns.conf"
+    run_process dns "sudo contrail-dns --conf_file /etc/contrail/dns/contrail-dns.conf"
     #NOTE: contrail-dns checks for '/usr/bin/contrail-named' in /proc/[pid]/cmdline to retrieve bind status
     run_process named "sudo /usr/bin/contrail-named -g -c /etc/contrail/dns/contrail-named.conf"
 
