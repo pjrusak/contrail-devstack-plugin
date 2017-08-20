@@ -372,7 +372,7 @@ elif [[ "$1" == "stack" && "$2" == "post-config" ]]; then
 
     echo_summary "Provisionning contrail"
 
-    local provision_api_args="--api_server_ip $SERVICE_HOST --api_server_port 8082 \
+    local provision_api_args="--api_server_ip $APISERVER_IP --api_server_port 8082 \
         --admin_user $CONTRAIL_ADMIN_USER --admin_password $CONTRAIL_ADMIN_PASSWORD --admin_tenant_name $CONTRAIL_ADMIN_PROJECT"
 
     if is_service_enabled vrouter ; then
